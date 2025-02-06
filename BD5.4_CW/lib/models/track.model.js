@@ -1,0 +1,10 @@
+import { DataTypes, sequelize } from "../index.js";
+
+export const track = sequelize.define("track", {
+  name: DataTypes.TEXT,
+  genre: DataTypes.TEXT,
+  release_year: DataTypes.INTEGER,
+  artist: DataTypes.TEXT,
+  album: DataTypes.TEXT,
+  duration: DataTypes.INTEGER,
+});

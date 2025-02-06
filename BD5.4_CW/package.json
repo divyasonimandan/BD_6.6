@@ -5,18 +5,17 @@
   "type": "module",
   "module": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@sequelize/core": "^7.0.0-alpha.44",
     "@types/node": "^20.9.1",
     "express": "^4.21.2",
-    "jest": "^29.7.0",
     "node-fetch": "^3.3.2",
     "sequelize": "^6.37.5",
+    "sqlite": "^5.1.1",
     "sqlite3": "^5.1.7"
   }
 }
