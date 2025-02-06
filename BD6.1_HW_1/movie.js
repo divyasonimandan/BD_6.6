@@ -9,7 +9,7 @@ export function getMovies() {
   return movies;
 }
 
-export function getMoviebyId(id) {
+export function getMovieById(id) {
   return movies.find((movie) => movie.id === id);
 }
 
