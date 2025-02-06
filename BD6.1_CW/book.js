@@ -1,3 +1,4 @@
+
 let books = [
   { id: 1, title: "1984", author: "George Orwell" },
   { id: 2, title: "The Great Gatsby", author: "F. Scott Fitzgerald" },
@@ -5,18 +6,16 @@ let books = [
   { id: 4, title: "To Kill a Mockingbird", author: "Harper Lee" },
 ];
 
-function getBooks() {
+export function getBooks() {
   return books;
 }
 
-function getBookById(id) {
+export function getBookById(id) {
   return books.find((book) => book.id === id);
 }
 
-function addBook(book) {
+export function addBook(book) {
   let newBook = { id: books.length + 1, ...book };
   books.push(newBook);
   return newBook;
 }
-
-export default { getBooks, getBookById, addBook };
