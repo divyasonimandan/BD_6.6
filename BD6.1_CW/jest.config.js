@@ -2,9 +2,7 @@
 /** @type {import('jest').Config} */
 export default {
   testEnvironment: "node",
-  transform: {},
-  extensionsToTreatAsEsm: ['.js'],
-  moduleNameMapper: {
-    '^(\\.{1,2}/.*)\\.js$': '$1'
+  transform: {
+    "^.+\\.js$": "babel-jest"
   }
 };
