@@ -1,5 +1,4 @@
-
-
+import test from "node:test";
 import { app, getAuthors, getAuthorById, addAuthor } from "../index.js";
 import http from "http";
 
@@ -45,5 +44,13 @@ describe("Author API Tests", () => {
         let result = getAuthorById(1);
         expect(result).toEqual(mockAuthor);
         expect(getAuthorById).toHaveBeenCalledWith(1);
+    });
+
+    test("getAuthorById should return undefined if author id not found", () => {
+        getAuthorById.mockReturnValue(undefined);
+
+        let result = getAuthorById(55);
+        expect(result).toBeUndefined();
+        expect(getAuthorById).toHaveBeenCalledWith(55);
     });
 });
