@@ -1,3 +1,4 @@
+import test from "node:test";
 import { app, getAuthors, getAuthorById, addAuthor } from "../index.js";
 import http from "http";
 
@@ -7,8 +8,6 @@ jest.mock("../index.js", () => ({
     getAuthorById: jest.fn(),
     addAuthor: jest.fn(),
 }));
-
-describe('Author API', () => {
 
 let server;
 
@@ -54,4 +53,4 @@ describe("Author API Tests", () => {
         expect(result).toBeUndefined();
         expect(getAuthorById).toHaveBeenCalledWith(55);
     });
-}); // end of Author API describe block
+});
