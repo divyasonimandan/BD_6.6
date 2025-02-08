@@ -9,15 +9,15 @@ let authors = [
     { authorId: 3, name: "Ray Bradbury", book: "Fahrenheit 451" },
 ];
 
-export function getAuthors() {
+function getAuthors() {
     return authors;
 }
 
-export function getAuthorById(id) {
+function getAuthorById(id) {
     return authors.find((author) => author.authorId === id);
 }
 
-export function addAuthor(author) {
+function addAuthor(author) {
     authors.push(author);
     return author;
 }
