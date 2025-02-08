@@ -1,3 +1,4 @@
+import test from "node:test";
 import { app, getAuthors, getAuthorById, addAuthor } from "../index.js";
 import http from "http";
 
@@ -24,16 +25,24 @@ describe("Function Tests", () => {
         jest.clearAllMocks();
     });
 
-    tests("getAuthors should return a list of authors", () => {
+    test("getAuthors should return a list of authors", () => {
         const mockAuthors = [
             { authorId: 1, name: "George Orwell", book: "1984" },
-            { authorId: 2, name: "Aldous Huxley", book: "Brave New World" }
+            { authorId: 2, name: "Aldous Huxley", book: "Brave New World" },
         ];
-
         getAuthors.mockReturnValue(mockAuthors);
 
         let result = getAuthors();
         expect(result).toEqual(mockAuthors);
         expect(getAuthors).toHaveBeenCalled();
+    });
+
+    test("getAuthorById should return an author details", () => {
+        const mockAuthor = { authorId: 1, name: "George Orwell", book: "1984" };
+
+        getAuthorById.mockReturnValue(mockAuthor);
+        let result = getAuthorById(1);
+        expect(result).toEqual(mockAuthor);
+        expect(getAuthorById).toHaveBeenCalledWith(1);
     });
 });
