@@ -1,3 +1,4 @@
+
 import test from "node:test";
 import { app, getAuthors, getAuthorById, addAuthor } from "../index.js";
 import http from "http";
@@ -20,7 +21,7 @@ afterAll((done) => {
     server.close(done);
 });
 
-describe("Function Tests", () => {
+describe("Author API Tests", () => {
     beforeEach(() => {
         jest.clearAllMocks();
     });
