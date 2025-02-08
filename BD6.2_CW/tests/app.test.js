@@ -1,3 +1,4 @@
+import test from "node:test";
 import { app, getAuthors, getAuthorById, addAuthor } from "../index.js";
 import http from "http";
 
@@ -51,5 +52,19 @@ describe("Author API Tests", () => {
         let result = getAuthorById(55);
         expect(result).toBeUndefined();
         expect(getAuthorById).toHaveBeenCalledWith(55);
+    });
+
+    test("addAuthor should add a new author", () => {
+        const newAuthor = {
+            authorId: 4,
+            name: "J.K. Rowling",
+            book: "Harry Potter",
+        };
+
+        addAuthor.mockReturnValue(newAuthor);
+        let result = addAuthor(newAuthor);
+
+        expect(result).toEqual(newAuthor);
+        expect(addAuthor).toHaveBeenCalledWith(newAuthor);
     });
 });
