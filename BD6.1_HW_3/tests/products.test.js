@@ -12,7 +12,7 @@ describe("Products Function", () => {
             { id: 4, name: "Running Shoes", category: "Footwear" },
         ]);
     });
-    it("Should return an product by ID", () => {
+    it("Should return a product by ID", () => {
         let product = getProductById(3);
 
         expect(product).toEqual({
@@ -28,7 +28,7 @@ describe("Products Function", () => {
         expect(product).toBeUndefined();
     });
 
-    it("Should add an product", () => {
+    it("Should add a product", () => {
         let newProduct = {
             name: "Tablet",
             category: "Electronics",
