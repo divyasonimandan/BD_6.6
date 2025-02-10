@@ -10,7 +10,7 @@ jest.mock("../index.js", () => ({
 
 let server;
 
-beforeAll((done) => () => {
+beforeAll((done) => {
     server = http.createServer(app);
     server.listen(3001, done);
 });
@@ -50,7 +50,7 @@ describe("Movies API Tests", () => {
 
         getMovieById.mockReturnValue(mockMovie);
 
-        let result = getMovieById(id);
+        let result = getMovieById(1);
         expect(result).toEqual(mockMovie);
         expect(getMovieById).toHaveBeenCalledWith(1);
     });
