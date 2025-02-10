@@ -18,8 +18,8 @@ function getEmployeeById(id) {
 }
 
 function addEmployee(employee) {
-    let newEmployee = employees.push(employee);
-    return newEmployee;
+    employees.push(employee);
+    return employees;
 }
 
 // 1: Get all employees.
