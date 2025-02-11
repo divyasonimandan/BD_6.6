@@ -10,7 +10,7 @@ import {
 import http from "http";
 
 jest.mock("../index.js", () => ({
-  ...jestConfig.requireActual("../index.js"),
+  ...jest.requireActual("../index.js"),
   getAllReviews: jest.fn(),
   getReviewById: jest.fn(),
   addNewReview: jest.fn(),
