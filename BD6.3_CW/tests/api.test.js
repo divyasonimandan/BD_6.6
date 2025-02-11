@@ -51,7 +51,7 @@ describe("APIs Endpoints", () => {
 
     getReviewById.mockResolvedValue(mockReview);
     const result = await request(server).get("/reviews/details/1");
-    expect(res.statusCode).toEqual(200);
+    expect(result.statusCode).toEqual(200);
     expect(result.body).toEqual(mockReview);
   });
 });
