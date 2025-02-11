@@ -8,6 +8,7 @@ import {
   addNewUser,
 } from "../index.js";
 import http from "http";
+import { it } from "node:test";
 
 jest.mock("../index.js", () => ({
   ...jest.requireActual("../index.js"),
@@ -34,7 +35,7 @@ describe("APIs Endpoints", () => {
     jest.clearAllMocks();
   });
 
-  it("should retrieve all reviews", async () => {
+  it("Should retrieve all reviews", async () => {
     const mockReviews = [
       { id: 1, content: "Great product!", userId: 1 },
       { id: 2, content: "Not bad, could be better.", userId: 2 },
@@ -42,16 +43,34 @@ describe("APIs Endpoints", () => {
 
     getAllReviews.mockResolvedValue(mockReviews);
     const result = await request(server).get("/reviews");
-    expect(result.statusCode).toBe(200);
+    expect(result.statusCode).toEqual(200);
     expect(result.body).toEqual(mockReviews);
   });
 
-  it("should retrieve a specific review by ID", async () => {
+  it("Should retrieve a specific review by ID", async () => {
     const mockReview = { id: 1, content: "Great product!", userId: 1 };
 
     getReviewById.mockResolvedValue(mockReview);
     const result = await request(server).get("/reviews/details/1");
     expect(result.statusCode).toEqual(200);
     expect(result.body).toEqual(mockReview);
+  });
+
+  it("Should return 404 for non-existing review", async () => {
+    getReviewById.mockResolvedValue(null);
+    const res = await request(server).get("/reviews/details/999");
+
+    expect(res.statusCode).toEqual(404);
+  });
+
+  it("should add a new review", async () => {
+    const mockReview = { id: 3, content: "Aewsome!", userId: 1 };
+
+    addNewReview.mockResolvedValue(mockReview);
+    const res = await request(server)
+      .post("/reviews/new")
+      .send({ content: "Aewsome!", userId: 1 });
+    expect(res.statusCode).toEqual(201);
+    expect(res.body).toEqual(mockReview);
   });
 });
