@@ -20,13 +20,13 @@ jest.mock("../index.js", () => ({
 
 let server;
 
-beforeAll((done) => () => {
+beforeAll((done) => {
   server = http.createServer(app);
   server.listen(3001, done);
 });
 
 afterAll((done) => {
-  Server.close(done);
+  server.close(done);
 });
 
 describe("APIs Endpoints", () => {
