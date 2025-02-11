@@ -45,4 +45,13 @@ describe("APIs Endpoints", () => {
     expect(result.statusCode).toBe(200);
     expect(result.body).toEqual(mockReviews);
   });
+
+  it("should retrieve a specific review by ID", async () => {
+    const mockReview = { id: 1, content: "Great product!", userId: 1 };
+
+    getReviewById.mockResolvedValue(mockReview);
+    const result = await request(server).get("/reviews/details/1");
+    expect(res.statusCode).toEqual(200);
+    expect(result.body).toEqual(mockReview);
+  });
 });
