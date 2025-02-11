@@ -8,7 +8,7 @@ import {
   addNewUser,
 } from "../index.js";
 import http from "http";
-import { it } from "node:test";
+
 
 jest.mock("../index.js", () => ({
   ...jest.requireActual("../index.js"),
