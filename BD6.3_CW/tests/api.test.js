@@ -9,7 +9,6 @@ import {
 } from "../index.js";
 import http from "http";
 
-
 jest.mock("../index.js", () => ({
   ...jest.requireActual("../index.js"),
   getAllReviews: jest.fn(),
@@ -35,6 +34,8 @@ describe("APIs Endpoints", () => {
     jest.clearAllMocks();
   });
 
+  // 6: Test get all reviews
+
   it("Should retrieve all reviews", async () => {
     const mockReviews = [
       { id: 1, content: "Great product!", userId: 1 },
@@ -47,6 +48,8 @@ describe("APIs Endpoints", () => {
     expect(result.body).toEqual(mockReviews);
   });
 
+  // 7: Test get review by ID
+
   it("Should retrieve a specific review by ID", async () => {
     const mockReview = { id: 1, content: "Great product!", userId: 1 };
 
@@ -56,6 +59,8 @@ describe("APIs Endpoints", () => {
     expect(result.body).toEqual(mockReview);
   });
 
+  // 8: Test get review by non-existent ID
+
   it("Should return 404 for non-existing review", async () => {
     getReviewById.mockResolvedValue(null);
     const res = await request(server).get("/reviews/details/999");
@@ -63,14 +68,29 @@ describe("APIs Endpoints", () => {
     expect(res.statusCode).toEqual(404);
   });
 
+  // 9: Test add new review
+
   it("should add a new review", async () => {
-    const mockReview = { id: 3, content: "Aewsome!", userId: 1 };
+    const mockReview = { id: 3, content: "Awesome!", userId: 1 };
 
     addNewReview.mockResolvedValue(mockReview);
     const res = await request(server)
       .post("/reviews/new")
-      .send({ content: "Aewsome!", userId: 1 });
+      .send({ content: "Awesome!", userId: 1 });
     expect(res.statusCode).toEqual(201);
     expect(res.body).toEqual(mockReview);
   });
+
+  // 10: Test get user by ID
+
+  it("Should retrieve a specific user by ID", async () => {
+    const mockUser = { id: 1, name: "John Doe", email: "john.doe@example.com" };
+
+    getUserById.mockResolvedValue(mockUser);
+    const res = await request(server).get("/users/details/1");
+    expect(res.statusCode).toEqual(200);
+    expect(res.body).toEqual(mockUser);
+  });
+
+  // 
 });
