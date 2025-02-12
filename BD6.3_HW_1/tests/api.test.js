@@ -105,4 +105,26 @@ describe("APIs Endpoints", () => {
     expect(result.statusCode).toEqual(200);
     expect(result.body).toEqual(mockDeveloper);
   });
+
+  // 11: Test get developer by non-existent ID.
+
+  it("Should return 404 for non-existing developer", async () => {
+    getDeveloperById.mockResolvedValue(null);
+    let result = await request(server).get("/developers/details/90");
+
+    expect(result.statusCode).toEqual(404);
+  });
+
+  // 12: Test add new developer.
+
+  it("Should add a new developer", async () => {
+    let newDeveloper = { id: 3, name: "Epic Games", country: "USA" };
+
+    addNewDeveloper.mockResolvedValue(newDeveloper);
+    let result = await request(server)
+      .post("/developers/new")
+      .send({ name: "Epic Games", country: "USA" });
+    expect(result.statusCode).toEqual(201);
+    expect(result.body).toEqual(newDeveloper);
+  });
 });
