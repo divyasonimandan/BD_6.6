@@ -8,6 +8,7 @@ import {
   addNewDeveloper,
 } from "../index.js";
 import http from "http";
+import { it } from "node:test";
 
 jest.mock("../index.js", () => ({
   ...jest.requireActual("../index.js"),
@@ -55,6 +56,22 @@ describe("APIs Endpoints", () => {
     getAllGames.mockResolvedValue(mockGames);
     let result = await request(server).get("/games");
     expect(result.statusCode).toEqual(200);
-    expect(result.body).toEqual(games);
+    expect(result.body).toEqual(mockGames);
+  });
+
+  // 7: Test get game by ID.
+
+  it("Should retrieve a specific game by ID", async () => {
+    const mockGame = {
+      id: 1,
+      title: "The Legend of Zelda",
+      genre: "Adventure",
+      developer: "Nintendo",
+    };
+
+    getGameById.mockResolvedValue(mockGame);
+    let result = await request(server).get("/games/details/1");
+    expect(result.statusCode).toEqual(200);
+    expect(result.body).toEqual(mockGame);
   });
 });
