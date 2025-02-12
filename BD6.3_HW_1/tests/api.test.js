@@ -101,7 +101,7 @@ describe("APIs Endpoints", () => {
     const mockDeveloper = { id: 1, name: "Nintendo", country: "Japan" };
 
     getDeveloperById.mockResolvedValue(mockDeveloper);
-    const result = await request(server).get("developers/details/1");
+    const result = await request(server).get("/developers/details/1");
     expect(result.statusCode).toEqual(200);
     expect(result.body).toEqual(mockDeveloper);
   });
