@@ -20,7 +20,7 @@ afterAll((done) => {
     server.close(done);
 });
 
-describe("APIs Endpoints", async () => {
+describe("APIs Endpoints", () => {
     afterEach(() => {
         jest.clearAllMocks();
     });
