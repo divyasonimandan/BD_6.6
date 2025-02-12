@@ -8,7 +8,6 @@ import {
   addNewDeveloper,
 } from "../index.js";
 import http from "http";
-import { it } from "node:test";
 
 jest.mock("../index.js", () => ({
   ...jest.requireActual("../index.js"),
@@ -73,5 +72,37 @@ describe("APIs Endpoints", () => {
     let result = await request(server).get("/games/details/1");
     expect(result.statusCode).toEqual(200);
     expect(result.body).toEqual(mockGame);
+  });
+
+  // 8: Test get game by non-existent ID.
+
+  it("should return 404 for non-existing game", async () => {
+    getGameById.mockResolvedValue(null);
+    let result = await request(server).get("/games/details/99");
+    expect(result.statusCode).toEqual(404);
+  });
+
+  // 9: Test add new game.
+
+  it("Should add a new game", async () => {
+    const newGame = { id: 3, name: "Epic Games", country: "USA" };
+
+    addNewGame.mockResolvedValue(newGame);
+    const res = await request(server)
+      .post("/games/new")
+      .send({ name: "Epic Games", country: "USA" });
+    expect(res.statusCode).toEqual(201);
+    expect(res.body).toEqual(newGame);
+  });
+
+  // 10: Test get developer by ID.
+
+  it("Should retrieve a specific developer by id", async () => {
+    const mockDeveloper = { id: 1, name: "Nintendo", country: "Japan" };
+
+    getDeveloperById.mockResolvedValue(mockDeveloper);
+    const result = await request(server).get("developers/details/1");
+    expect(result.statusCode).toEqual(200);
+    expect(result.body).toEqual(mockDeveloper);
   });
 });
