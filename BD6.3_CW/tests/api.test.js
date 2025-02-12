@@ -92,5 +92,29 @@ describe("APIs Endpoints", () => {
     expect(res.body).toEqual(mockUser);
   });
 
-  // 
+  // 11: Test get user by non-existent ID.
+
+  it("Should return 404 for non-existing user", async () => {
+    getUserById.mockResolvedValue(null);
+    const res = await request(server).get("/users/details/999");
+
+    expect(res.statusCode).toEqual(404);
+  });
+
+  // 12. Test add new user.
+
+  it("should add a new user", async () => {
+    const mockUser = {
+      id: 3,
+      name: "Alice Brown",
+      email: "alice.brown@example.com",
+    };
+
+    addNewUser.mockResolvedValue(mockUser);
+    const res = await request(server)
+      .post("/users/new")
+      .send({ name: "Alice Brown", email: "alice.brown@example.com" });
+    expect(res.statusCode).toEqual(201);
+    expect(res.body).toEqual(mockUser);
+  });
 });
