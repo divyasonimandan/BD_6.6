@@ -27,7 +27,7 @@ app.get("/api/books", async (req, res) => {
 
 app.get("/api/books/:id", async (req, res) => {
   try {
-    let book = await getBookById(req.params.id);
+    let book = await getBookById(parseInt(req.params.id));
     if (!book) return res.status(404).json({ error: "No book found By ID" });
     res.json(book);
   } catch (error) {
@@ -53,7 +53,7 @@ app.get("/api/reviews", async (req, res) => {
 
 app.get("/api/reviews/:id", async (req, res) => {
   try {
-    let review = await getReviewById(req.params.id);
+    let review = await getReviewById(parseInt(req.params.id));
     if (!review)
       return res.status(404).json({ error: "No review found By ID" });
     res.json(review);
@@ -66,7 +66,7 @@ app.get("/api/reviews/:id", async (req, res) => {
 
 app.get("/api/users/:id", async (req, res) => {
   try {
-    let user = await getUserById(req.params.id);
+    let user = await getUserById(parseInt(req.params.id));
     if (!user) return res.status(404).json({ error: "No user found By ID" });
     res.json(user);
   } catch (error) {
