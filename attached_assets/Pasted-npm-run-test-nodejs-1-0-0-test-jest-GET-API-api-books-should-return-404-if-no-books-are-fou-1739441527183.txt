@@ -1,0 +1,56 @@
+npm run test
+
+> nodejs@1.0.0 test
+> jest
+
+✖ GET API /api/books should return 404 if no books are found (2.31392ms)
+  TypeError: Cannot read properties of undefined (reading 'address')
+      at Test.serverAddress (/home/runner/workspace/node_modules/supertest/lib/test.js:46:22)
+      at new Test (/home/runner/workspace/node_modules/supertest/lib/test.js:34:14)
+      at Object.obj.<computed> [as get] (/home/runner/workspace/node_modules/supertest/index.js:43:18)
+      at TestContext.get (/home/runner/workspace/BD6.4_CW/tests/api.test.js:42:44)
+      at Test.runInAsyncScope (node:async_hooks:211:14)
+      at Test.run (node:internal/test_runner/test:934:25)
+      at Test.start (node:internal/test_runner/test:833:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+ FAIL  tests/api.test.js
+  ● Test suite failed to run
+
+    Your test suite must contain at least one test.
+
+      at onResult (../node_modules/@jest/core/build/TestScheduler.js:133:18)
+      at ../node_modules/@jest/core/build/TestScheduler.js:254:19
+      at ../node_modules/emittery/index.js:363:13
+          at Array.map (<anonymous>)
+      at Emittery.emit (../node_modules/emittery/index.js:361:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       0 total
+Snapshots:   0 total
+Time:        0.656 s
+Ran all test suites.
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 75.672423
+
+✖ failing tests:
+
+test at tests/api.test.js:39:20
+✖ GET API /api/books should return 404 if no books are found (2.31392ms)
+  TypeError: Cannot read properties of undefined (reading 'address')
+      at Test.serverAddress (/home/runner/workspace/node_modules/supertest/lib/test.js:46:22)
+      at new Test (/home/runner/workspace/node_modules/supertest/lib/test.js:34:14)
+      at Object.obj.<computed> [as get] (/home/runner/workspace/node_modules/supertest/index.js:43:18)
+      at TestContext.get (/home/runner/workspace/BD6.4_CW/tests/api.test.js:42:44)
+      at Test.runInAsyncScope (node:async_hooks:211:14)
+      at Test.run (node:internal/test_runner/test:934:25)
+      at Test.start (node:internal/test_runner/test:833:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+      at processTicksAndRejections (node:internal/process/task_queues:105:5)

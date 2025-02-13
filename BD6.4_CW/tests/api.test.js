@@ -39,8 +39,9 @@ describe("APIs Endpoints", () => {
 
   it("GET API /api/books should return 404 if no books are found", async () => {
     getAllBooks.mockReturnValue([]);
+    
     const response = await request(server).get("/api/books");
-    expect(response.statusCode).toBe(404);
-    expect(response.body.error).toEqual({ error: "No books found" });
+    expect(response.status).toBe(404);
+    expect(response.body.error).toEqual("No books found");
   });
 });
