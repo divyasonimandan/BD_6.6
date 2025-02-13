@@ -28,7 +28,7 @@ app.get("/api/books", async (req, res) => {
 app.get("/api/books/:id", async (req, res) => {
   try {
     let book = await getBookById(parseInt(req.params.id));
-    if (!book) return res.status(404).json({ error: "No book found By ID" });
+    if (!book) return res.status(404).json({ error: "No book found by ID" });
     res.json(book);
   } catch (error) {
     res.status(500).json({ error: "Internal Server Error" });
@@ -55,7 +55,7 @@ app.get("/api/reviews/:id", async (req, res) => {
   try {
     let review = await getReviewById(parseInt(req.params.id));
     if (!review)
-      return res.status(404).json({ error: "No review found By ID" });
+      return res.status(404).json({ error: "No review found by ID" });
     res.json(review);
   } catch (error) {
     res.status(500).json({ error: "Internal Server Error" });
@@ -67,7 +67,7 @@ app.get("/api/reviews/:id", async (req, res) => {
 app.get("/api/users/:id", async (req, res) => {
   try {
     let user = await getUserById(parseInt(req.params.id));
-    if (!user) return res.status(404).json({ error: "No user found By ID" });
+    if (!user) return res.status(404).json({ error: "No user found by ID" });
     res.json(user);
   } catch (error) {
     res.status(500).json({ error: "Internal Server Error" });
