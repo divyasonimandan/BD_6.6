@@ -74,4 +74,4 @@ app.get("/api/users/:id", async (req, res) => {
   }
 });
 
-export default { app };
+export { app };
