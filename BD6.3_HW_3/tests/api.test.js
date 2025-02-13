@@ -25,6 +25,8 @@ describe("APIs Endpoints", () => {
         jest.clearAllMocks();
     });
 
+    // 4 : Test Get All Recipes
+
     it("Should retrieve all recipes", async () => {
         const mockRecipes = [
             {
@@ -45,5 +47,46 @@ describe("APIs Endpoints", () => {
         let result = await request(server).get("/recipes");
         expect(result.statusCode).toEqual(200);
         expect(result.body).toEqual(mockRecipes);
+    });
+
+    //  5 : Test Get Recipe by ID.
+
+    it("Should retrieve a specific recipe by id", async () => {
+        const mockRecipe = {
+            id: 1,
+            name: "Spaghetti Bolognese",
+            cuisine: "Italian",
+            difficulty: "Medium",
+        };
+
+        getRecipeById.mockResolvedValue(mockRecipe);
+        let result = await request(server).get("/recipes/details/1");
+        expect(result.statusCode).toEqual(200);
+        expect(result.body).toEqual(mockRecipe);
+    });
+
+    // 6 : Test Get Recipe by Non-Existent ID.
+
+    it("Should return 404 for non-existing recipe", async () => {
+        getRecipeById.mockResolvedValue(null);
+        let result = await request(server).get("/recipes/details/50");
+        expect(result.statusCode).toEqual(404);
+    });
+
+    // 7 : Test Add New Recipe.
+
+    it("Should add new recipe", async () => {
+        const newRecipe = {
+            id: 3,
+            name: "Sushi",
+            cuisine: "Japanese",
+            difficulty: "Hard",
+        };
+        addNewRecipe.mockResolvedValue(newRecipe);
+        let result = await request(server)
+            .post("/recipes/new")
+            .send({ name: "Sushi", cuisine: "Japanese", difficulty: "Hard" });
+        expect(result.statusCode).toEqual(201);
+        expect(result.body).toEqual(newRecipe);
     });
 });
