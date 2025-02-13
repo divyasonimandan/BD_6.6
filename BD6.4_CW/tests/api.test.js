@@ -41,6 +41,6 @@ describe("APIs Endpoints", () => {
     getAllBooks.mockReturnValue([]);
     const response = await request(server).get("/api/books");
     expect(response.statusCode).toBe(404);
-    expect(response.body).toEqual({ error: "No books found" });
+    expect(response.body.error).toEqual({ error: "No books found" });
   });
 });
