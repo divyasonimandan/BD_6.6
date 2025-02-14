@@ -42,4 +42,34 @@ describe("APIs Endpoints", () => {
         expect(response.status).toBe(404);
         expect(response.body.error).toBe("No games found");
     });
+
+    // 6: Test get game by non-existent ID.
+
+    it("GET API /api/games/:id should return 404 for non-existing game ID", async () => {
+        getGameById.mockReturnValue(null);
+
+        let response = await request(server).get("/api/games/33");
+        expect(response.status).toBe(404);
+        expect(response.body.error).toBe("No game found by Id");
+    });
+
+    // 7: Test get all genres with no genres.
+
+    it("GET API /api/genres should return 404 if no genres found", async () => {
+        getAllGenres.mockReturnValue([]);
+
+        let response = await request(server).get("/api/genres");
+        expect(response.status).toBe(404);
+        expect(response.body.error).toBe("No genres found");
+    });
+
+    // 8: Test get genre by non-existent ID.
+
+    it("GET API /api/genres/:id should return 404 for non-existing genre ID", async () => {
+        getGenreById.mockReturnValue(null);
+
+        let response = await request(server).get("/api/genres/33");
+        expect(response.status).toBe(404);
+        expect(response.body.error).toBe("No genre found by Id");
+    });
 });
