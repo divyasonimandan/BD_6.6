@@ -53,7 +53,7 @@ app.get("/api/departments/:id", async (req, res) => {
   try {
     let department = await getDepartmentById(parseInt(req.params.id));
     if (!department)
-      return res.status(404).json({ error: "No deaprtment found by Id" });
+      return res.status(404).json({ error: "No department found by Id" });
     res.json(department);
   } catch (error) {
     res.status(500).json({ error: "Internal Server Error" });
