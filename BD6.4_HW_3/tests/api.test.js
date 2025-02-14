@@ -2,14 +2,13 @@ import request from "supertest";
 import http from "http";
 import { app } from "../index.js";
 import {
-      getAllArticles,
-      getArticleById,
-      getAllComments,
-      getCommentById,
-      getUserById 
+    getAllArticles,
+    getArticleById,
+    getAllComments,
+    getCommentById,
+    getUserById,
 } from "../article.js";
-    
-  
+
 jest.mock("../article.js", () => ({
     ...jest.requireActual("../article.js"),
     getAllArticles: jest.fn(),
@@ -35,7 +34,7 @@ describe("APIs Endpoints", () => {
         jest.clearAllMocks();
     });
 
-//  6: Test Get All Articles with No Articles
+    //  6: Test Get All Articles with No Articles
 
     it("GET API /articles should return 404 if no articles found", async () => {
         getAllArticles.mockReturnValue([]);
@@ -43,7 +42,5 @@ describe("APIs Endpoints", () => {
         let response = await request(server).get("/articles");
         expect(response.status).toBe(404);
         expect(response.body.error).toBe("No articles found");
-    })
-
-
+    });
 });
