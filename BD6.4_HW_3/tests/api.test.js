@@ -37,7 +37,7 @@ describe("APIs Endpoints", () => {
 
 //  6: Test Get All Articles with No Articles
 
-    it("GET API /articles should return 404 if no articles found", aysnc () => {
+    it("GET API /articles should return 404 if no articles found", async () => {
         getAllArticles.mockReturnValue([]);
 
         let response = await request(server).get("/articles");
