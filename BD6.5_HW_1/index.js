@@ -32,8 +32,8 @@ function validateTournament(tournament) {
     if (!tournament.name || typeof tournament.name !== "string") {
         return "Name is required and should be a string";
     }
-    if (!tournament.userId || typeof tournament.userId !== "number") {
-        return "User Id is required and should be a number";
+    if (!tournament.gameId || typeof tournament.gameId !== "number") {
+        return "Game Id is required and should be a number";
     }
     return null;
 }
