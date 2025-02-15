@@ -37,6 +37,7 @@ function validateBook(book) {
   if (!book.author || typeof book.author !== "string") {
     return "Author is required and should be a string";
   }
+  return null;
 }
 
 app.post("/api/books", (req, res) => {
