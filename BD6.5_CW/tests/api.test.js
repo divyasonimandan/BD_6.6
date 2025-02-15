@@ -115,12 +115,25 @@ describe("Validation Funtions", () => {
 
   it("should validate book input correctly", () => {
     expect(
-      validateBook({ title: "Moby Dick", author: "Herman Melville" })).toBeNull();
+      validateBook({ title: "Moby Dick", author: "Herman Melville" }),
+    ).toBeNull();
     expect(validateBook({ title: "Moby Dick" })).toEqual(
       "Author is required and should be a string",
     );
     expect(validateBook({ author: "Herman Melville" })).toEqual(
       "Title is required and should be a string",
+    );
+  });
+
+  // 12: Test review validation function.
+
+  it("should validate review input correctly", () => {
+    expect(validateReview({ content: "Great book!", userId: 1 })).toBeNull();
+    expect(validateReview({ content: "Great book!" })).toEqual(
+      "User ID is required and should be a number",
+    );
+    expect(validateReview({ userId: 1 })).toEqual(
+      "Content is required and should be a string",
     );
   });
 });
