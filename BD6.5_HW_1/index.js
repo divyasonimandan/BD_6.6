@@ -8,6 +8,9 @@ let tournaments = [];
 // 1: Add a New Game.
 
 function validateGame(game) {
+    if (!game) {
+        return "Invalid game data.";
+    }
     if (!game.title || typeof game.title !== "string") {
         return "Title is required and should be a string";
     }
