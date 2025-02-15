@@ -1,7 +1,6 @@
 import request from "supertest";
 import { app, validateUser, validateBook, validateReview } from "../index.js";
 import http from "http";
-import { it } from "node:test";
 
 let server;
 
@@ -94,5 +93,34 @@ describe("API Endpoints to add data", () => {
 
     expect(res.statusCode).toEqual(400);
     expect(res.text).toEqual("User ID is required and should be a number");
+  });
+});
+
+describe("Validation Funtions", () => {
+  // 10: Test user validation function.
+
+  it("should validate user input correctly", () => {
+    expect(
+      validateUser({ name: "Alice", email: "alice@example.com" }),
+    ).toBeNull();
+    expect(validateUser({ name: "Alice" })).toEqual(
+      "Email is required and should be a string",
+    );
+    expect(validateUser({ email: "alice@example.com" })).toEqual(
+      "Name is required and should be a string",
+    );
+  });
+
+  // 11: Test book validation function.
+
+  it("should validate book input correctly", () => {
+    expect(
+      validateBook({ title: "Moby Dick", author: "Herman Melville" })).toBeNull();
+    expect(validateBook({ title: "Moby Dick" })).toEqual(
+      "Author is required and should be a string",
+    );
+    expect(validateBook({ author: "Herman Melville" })).toEqual(
+      "Title is required and should be a string",
+    );
   });
 });
