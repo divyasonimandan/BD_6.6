@@ -23,7 +23,7 @@ describe("API Endpoints to add data", () => {
         });
 
         expect(res.statusCode).toEqual(201);
-        expect(res.text).toEqual({
+        expect(res.body).toEqual({
             id: 1,
             title: "The Legend of Zelda",
             genre: "Adventure",
