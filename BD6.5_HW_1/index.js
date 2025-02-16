@@ -8,9 +8,6 @@ let tournaments = [];
 // 1: Add a New Game.
 
 function validateGame(game) {
-    if (!game) {
-        return "Invalid game data.";
-    }
     if (!game.title || typeof game.title !== "string") {
         return "Title is required and should be a string";
     }
@@ -22,7 +19,6 @@ function validateGame(game) {
 
 app.post("/api/games", (req, res) => {
     let error = validateGame(req.body);
-
     if (error) return res.status(400).send(error);
     let game = { id: games.length + 1, ...req.body };
     games.push(game);

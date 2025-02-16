@@ -74,8 +74,13 @@ describe("Validation Functions", () => {
 
     it("should validate game input correctly", () => {
         expect(
-            validateGame({ title: "The Legend of Zelda", genre: "Adventure" })
+            validateGame({ title: "The Legend of Zelda", genre: "Adventure" }),
         ).toBeNull();
+    });
+
+    // 8: Test Game Validation Function Error Handling with Jest Mocks
+
+    it("should return error message for invalid game input", () => {
         expect(validateGame({ title: "The Legend of Zelda" })).toEqual(
             "Genre is required and should be a string",
         );
@@ -84,9 +89,22 @@ describe("Validation Functions", () => {
         );
     });
 
-    // 8: Test Game Validation Function Error Handling with Jest Mocks
-    it("should return an error message for null input", () => {
-        expect(validateGame(null)).toEqual("Invalid game data.");
+    // 9: Test Tournament Validation Function
+
+    it("should validate tournament input correctly", () => {
+        expect(
+            validateTournament({ name: "Zelda Championship", gameId: 1 }),
+        ).toBeNull();
     });
-    
+
+    // 10: Test Tournament Validation Function Error Handling
+
+    it("should return error message for invalid tournament input", () => {
+        expect(validateTournament({ name: "Zelda Championship" })).toEqual(
+            "Game Id is required and should be a number",
+        );
+        expect(validateTournament({ gameId: 1 })).toEqual(
+            "Name is required and should be a string",
+        );
+    });
 });
