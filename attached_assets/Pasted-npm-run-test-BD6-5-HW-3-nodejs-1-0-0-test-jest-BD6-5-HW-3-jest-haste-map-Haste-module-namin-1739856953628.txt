@@ -1,14 +1,14 @@
-npm run test BD6.5_HW_2/
+npm run test BD6.5_HW_3/
 
 > nodejs@1.0.0 test
-> jest BD6.5_HW_2/
+> jest BD6.5_HW_3/
 
 jest-haste-map: Haste module naming collision: nodejs
   The following files share their name; please adjust your hasteImpl:
-    * <rootDir>/package.json
     * <rootDir>/BD6.1_CW/package.json
+    * <rootDir>/BD6.1_HW_1/package.json
 
- FAIL  BD6.5_HW_2/tests/api.test.js
+ FAIL  BD6.5_HW_3/tests/api.test.js
   ● Test suite failed to run
 
     Jest encountered an unexpected token
@@ -33,7 +33,7 @@ jest-haste-map: Haste module naming collision: nodejs
 
     Details:
 
-    /home/runner/workspace/BD6.5_HW_2/tests/api.test.js:1
+    /home/runner/workspace/BD6.5_HW_3/tests/api.test.js:1
     ({"Object.<anonymous>":function(module,exports,require,__dirname,__filename,jest){import request from "supertest";
                                                                                       ^^^^^^
 
@@ -44,5 +44,5 @@ jest-haste-map: Haste module naming collision: nodejs
 Test Suites: 1 failed, 1 total
 Tests:       0 total
 Snapshots:   0 total
-Time:        0.441 s
-Ran all test suite
+Time:        0.445 s
+Ran all test suites matching /BD6.5_HW_3\//i.

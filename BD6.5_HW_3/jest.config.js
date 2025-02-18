@@ -1,5 +1,3 @@
-
-/** @type {import('jest').Config} */
 export default {
   testEnvironment: "node",
   transform: {
@@ -7,5 +5,5 @@ export default {
   },
   moduleFileExtensions: ["js"],
   testMatch: ["**/tests/**/*.test.js"],
-  transformIgnorePatterns: ["node_modules/(?!variables/.*)"]
-};
+  rootDir: "."
+}
