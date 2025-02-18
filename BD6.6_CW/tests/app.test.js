@@ -3,10 +3,8 @@ import { app } from "../index.js";
 import { getAllEmployees, getEmployeeById } from "../controllers";
 import http from "http";
 
-
-
 jest.mock("../controllers", () => ({
-  ...jestConfig.requireActual("../controllers"),
+  ...jest.requireActual("../controllers"),
   getAllEmployees: jest.fn(),
   getEmployeeById: jest.fn(),
 }));
