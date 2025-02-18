@@ -59,7 +59,7 @@ function validateAuthor(author) {
     return "Name is required and should be a string";
   }
   if (!author.articleId || typeof author.articleId !== "number") {
-    return "author is required and should be a number";
+    return "Article Id is required and should be a number";
   }
   return null;
 }
