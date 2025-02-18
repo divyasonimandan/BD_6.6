@@ -1,3 +1,4 @@
+
 export default {
   testEnvironment: "node",
   transform: {
@@ -5,5 +6,5 @@ export default {
   },
   moduleFileExtensions: ["js"],
   testMatch: ["**/tests/**/*.test.js"],
-  rootDir: "."
-}
+  transformIgnorePatterns: ["node_modules/(?!variables/.*)"]
+};
