@@ -1,6 +1,6 @@
 import cors from "cors";
 import express from "express";
-import { getAllEmployees, getEmployeeById } from "../controllers";
+import { getAllEmployees, getEmployeeById } from "./controllers/index.js";
 
 const app = express();
 app.use(cors());
