@@ -10,14 +10,14 @@ app.use(express.json());
 
 app.get("/employees", async (req, res) => {
   let employees = await getAllEmployees();
-  res.json({ employees });
+  res.json(employees);
 });
 
 // 2: Retrieve Employee by ID
 
 app.get("/employees/details/:id", async (req, res) => {
   let employee = await getEmployeeById(parseInt(req.params.id));
-  res.json({ employee });
+  res.json(employee);
 });
 
 export { app };
