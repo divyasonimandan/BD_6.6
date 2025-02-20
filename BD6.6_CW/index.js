@@ -8,15 +8,15 @@ app.use(express.json());
 
 // 1: Retrieve All Employees
 
-app.get("/employees", async (req, res) => {
-  let employees = await getAllEmployees();
+app.get("/employees", (req, res) => {
+  let employees = getAllEmployees();
   res.json(employees);
 });
 
 // 2: Retrieve Employee by ID
 
-app.get("/employees/details/:id", async (req, res) => {
-  let employee = await getEmployeeById(parseInt(req.params.id));
+app.get("/employees/details/:id", (req, res) => {
+  let employee = getEmployeeById(parseInt(req.params.id));
   res.json(employee);
 });
 
