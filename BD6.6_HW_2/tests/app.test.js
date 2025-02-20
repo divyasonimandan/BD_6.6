@@ -52,6 +52,6 @@ describe("Controllers Function Tests", () => {
         getAllGames.mockReturnValue(mockGames);
         let res = await request(server).get("/games");
         expect(res.status).toEqual(200);
-        expect(res.body).toEqual(mockGames);
+        expect(res.body.length).toEqual(mockGames);
     });
 });
