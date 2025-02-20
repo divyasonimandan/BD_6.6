@@ -23,6 +23,9 @@ jobs:
               with:
                   node-version: ${{ matrix.node-version }}
 
+            - name: Change directory
+              run: cd BD6.6_CW/
+
             - name: Install dependencies
               run: npm install
 
