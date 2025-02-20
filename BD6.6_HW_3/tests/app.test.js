@@ -1,3 +1,4 @@
+
 import request from "supertest";
 import { getAllBooks, getBookById } from "../controllers";
 import { app } from "../index.js";
@@ -20,7 +21,7 @@ afterAll((done) => {
     server.close(done);
 });
 
-describe("contrllers Function Tests", () => {
+describe("Controllers Function Tests", () => {
     beforeEach(() => {
         jest.clearAllMocks();
     });
