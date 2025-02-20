@@ -1,0 +1,46 @@
+BD6.6_CW/tests/app.test.js
+  Controllers Function Tests
+    ✕ Should retrieve all employees (48 ms)
+    ✕ Should retrieve employee by ID (6 ms)
+    ✓ should return correctly call the function (4 ms)
+
+  ● Controllers Function Tests › Should retrieve all employees
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: [{"departmentId": 1, "email": "rahul.sharma@example.com", "employeeId": 1, "name": "Rahul Sharma", "roleId": 1}, {"departmentId": 2, "email": "priya.singh@example.com", "employeeId": 2, "name": "Priya Singh", "roleId": 2}, {"departmentId": 1, "email": "ankit.verma@example.com", "employeeId": 3, "name": "Ankit Verma", "roleId": 3}]
+    Received: {"header": {"access-control-allow-origin": "*", "connection": "close", "content-length": "2", "content-type": "application/json; charset=utf-8", "date": "Thu, 20 Feb 2025 20:02:06 GMT", "etag": "W/\"2-vyGp6PvFo4RvsFtPoIWeCReyIC8\"", "x-powered-by": "Express"}, "req": {"data": undefined, "headers": {}, "method": "GET", "url": "http://127.0.0.1:3001/employees"}, "status": 200, "text": "{}"}
+
+      56 |     const result = await request(server).get("/employees");
+      57 |     expect(result.statusCode).toEqual(200);
+    > 58 |     expect(result).toEqual(mockEmployees);
+         |                    ^
+      59 |   });
+      60 |
+      61 |   // 4: Test Retrieve Employee by ID
+
+      at Object.toEqual (BD6.6_CW/tests/app.test.js:58:20)
+
+  ● Controllers Function Tests › Should retrieve employee by ID
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: {"departmentId": 1, "email": "rahul.sharma@example.com", "employeeId": 1, "name": "Rahul Sharma", "roleId": 1}
+    Received: "{}"
+
+      74 |
+      75 |     expect(result.statusCode).toEqual(200);
+    > 76 |     expect(result.text).toEqual(mockEmployee);
+         |                         ^
+      77 |   });
+      78 |
+      79 |   //  5: Mock the Get All Employees Function
+
+      at Object.toEqual (BD6.6_CW/tests/app.test.js:76:25)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 1 passed, 3 total
+Snapshots:   0 total
+Time:        0.754 s, estimated 1 s
+Ran all test suites matching /BD6.6_CW\//i.
+~/workspace/BD6.6_CW$ 

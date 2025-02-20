@@ -11,13 +11,13 @@ jest.mock("../controllers", () => ({
 
 let server;
 
-beforeAll(async () => {
+beforeAll((done) => {
   server = http.createServer(app);
-  server.listen(3001);
+  server.listen(3001, done);
 });
 
-afterAll(async () => {
-  server.close();
+afterAll((done) => {
+  server.close(done);
 });
 
 describe("Controllers Function Tests", () => {
@@ -55,7 +55,7 @@ describe("Controllers Function Tests", () => {
     getAllEmployees.mockResolvedValue(mockEmployees);
     const result = await request(server).get("/employees");
     expect(result.statusCode).toEqual(200);
-    expect(result.body).toEqual(mockEmployees);
+    expect(result).toEqual(mockEmployees);
   });
 
   // 4: Test Retrieve Employee by ID
@@ -71,8 +71,9 @@ describe("Controllers Function Tests", () => {
 
     getEmployeeById.mockResolvedValue(mockEmployee);
     const result = await request(server).get("/employees/details/1");
+
     expect(result.statusCode).toEqual(200);
-    expect(result.body).toEqual(mockEmployee);
+    expect(result.text).toEqual(mockEmployee);
   });
 
   //  5: Mock the Get All Employees Function

@@ -29,7 +29,7 @@ function getAllEmployees() {
 }
 
 function getEmployeeById(id) {
-    employees.find((employee) => employee.employeeId === id);
+    return employees.find((employee) => employee.employeeId === id);
 }
 
 export { getAllEmployees, getEmployeeById };
