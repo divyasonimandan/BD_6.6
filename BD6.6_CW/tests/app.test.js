@@ -52,10 +52,10 @@ describe("Controllers Function Tests", () => {
       },
     ];
 
-    getAllEmployees.mockResolvedValue(mockEmployees);
+    getAllEmployees.mockReturnValue(mockEmployees);
     const result = await request(server).get("/employees");
     expect(result.statusCode).toEqual(200);
-    expect(result).toEqual(mockEmployees);
+    expect(result.body).toEqual(mockEmployees);
   });
 
   // 4: Test Retrieve Employee by ID
@@ -69,11 +69,11 @@ describe("Controllers Function Tests", () => {
       roleId: 1,
     };
 
-    getEmployeeById.mockResolvedValue(mockEmployee);
+    getEmployeeById.mockReturnValue(mockEmployee);
     const result = await request(server).get("/employees/details/1");
 
     expect(result.statusCode).toEqual(200);
-    expect(result.text).toEqual(mockEmployee);
+    expect(result.body).toEqual(mockEmployee);
   });
 
   //  5: Mock the Get All Employees Function

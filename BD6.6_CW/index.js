@@ -10,8 +10,6 @@ app.use(express.json());
 
 app.get("/employees", (req, res) => {
   let employees = getAllEmployees();
-  console.log(employees);
-
   res.json(employees);
 });
 
@@ -19,7 +17,6 @@ app.get("/employees", (req, res) => {
 
 app.get("/employees/details/:id", (req, res) => {
   let employee = getEmployeeById(parseInt(req.params.id));
-  console.log(employee);
   res.json(employee);
 });
 
