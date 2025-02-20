@@ -19,5 +19,35 @@ afterAll(async () => {
 });
 
 describe("Controllers Function Tests", () => {
-  
-})
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+  // 3: Test Retrieve All Movies
+  it("should retrieve all movies", async () => {
+    let mockMovies = [
+      {
+        movieId: 1,
+        title: "Inception",
+        genre: "Sci-Fi",
+        director: "Christopher Nolan",
+      },
+      {
+        movieId: 2,
+        title: "The Shawshank Redemption",
+        genre: "Drama",
+        director: "Frank Darabont",
+      },
+      {
+        movieId: 3,
+        title: "The Godfather",
+        genre: "Crime",
+        director: "Francis Ford Coppola",
+      },
+    ];
+
+    getAllMovies.mockReturnValue(mockMovies);
+    let res = await request(server).get("/movies");
+    expect(res.status).toEqual(200);
+    expect(res.body).toEqual(mockMovies);
+  });
+});
