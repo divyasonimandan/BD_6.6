@@ -62,6 +62,7 @@ app.get("/shows/:id", (req, res) => {
 
 app.post("/shows", (req, res) => {
   let newShow = addNewShow(req.body);
+  if (!newShow) return res.status(400).json({ error: "Invalid input" });
   res.status(201).json(newShow);
 });
 
