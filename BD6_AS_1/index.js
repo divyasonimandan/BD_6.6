@@ -26,6 +26,9 @@ function getShowById(id) {
 }
 
 function addNewShow(show) {
+  if (!show.title || !show.theatreId || !show.time) {
+    return null;
+  }
   show.showId = shows.length + 1;
   shows.push(show);
   return show;
@@ -62,7 +65,9 @@ app.get("/shows/:id", (req, res) => {
 
 app.post("/shows", (req, res) => {
   let newShow = addNewShow(req.body);
-  if (!newShow) return res.status(400).json({ error: "Invalid input" });
+  if (!newShow) {
+    return res.status(400).json({ error: "Invalid input" });
+  }
   res.status(201).json(newShow);
 });
 
