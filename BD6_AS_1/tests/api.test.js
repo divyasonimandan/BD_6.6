@@ -2,7 +2,6 @@ import request from "supertest";
 import { app, getAllShows, getShowById, addNewShow } from "../index.js";
 import http from "http";
 
-
 jest.mock("../index.js", () => ({
   ...jest.requireActual("../index.js"),
   getAllShows: jest.fn(),
@@ -83,14 +82,13 @@ describe("APIs Endpoints", () => {
   });
 
   // Test 5: Input Validation for Add Show
-  it("should return 400 for invalid input", async () =>{
+  it("should return 400 for invalid input", async () => {
     addNewShow.mockResolvedValue(null);
     let res = await request(server).post("/shows").send({
-      title: "Phantom of the Opera",
       theatreId: 2,
       time: "5:00 PM",
     });
     expect(res.statusCode).toEqual(400);
     expect(res.body).toEqual({ error: "Invalid input" });
-  })
+  });
 });

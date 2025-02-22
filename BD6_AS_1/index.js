@@ -26,7 +26,7 @@ function getShowById(id) {
 }
 
 function addNewShow(show) {
-  if (!show.title || !show.theatreId || !show.time) {
+  if (!show.name || !show.date || !show.time) {
     return null;
   }
   show.showId = shows.length + 1;
