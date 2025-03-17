@@ -54,7 +54,7 @@ describe("APIs Endpoints", () => {
     expect(res.body).toEqual({ show });
   });
 
-  //Test 3: Add a New Show
+  // Test 3: Add a New Show
   it("should add a new show", async () => {
     const newShow = {
       showId: 5,
@@ -90,5 +90,31 @@ describe("APIs Endpoints", () => {
     });
     expect(res.statusCode).toEqual(400);
     expect(res.body).toEqual({ error: "Invalid input" });
+  });
+
+  // Test 6: Mock getAllShows Function
+  it("should return correctly call the function", async () => {
+    getAllShows.mockResolvedValue([
+      { showId: 1, title: "The Lion King", theatreId: 1, time: "7:00 PM" },
+      { showId: 2, title: "Hamilton", theatreId: 2, time: "8:00 PM" },
+      { showId: 3, title: "Wicked", theatreId: 3, time: "9:00 PM" },
+      { showId: 4, title: "Les Misérables", theatreId: 1, time: "6:00 PM" },
+    ]);
+    let res = await request(server).get("/shows");
+    expect(res.statusCode).toEqual(200);
+  });
+
+  // Test 7: Mock Add Show Function
+  it("should add a new show", async () => {
+    addNewShow.mockResolvedValue({
+      showId: 5,
+      title: "Phantom of the Opera",
+      theatreId: 2,
+      time: "5:00 PM",
+    });
+    let res = await request(server)
+      .post("/shows")
+      .send({ title: "Phantom of the Opera", theatreId: 2, time: "5:00 PM" });
+    expect(res.statusCode).toEqual(201);
   });
 });
