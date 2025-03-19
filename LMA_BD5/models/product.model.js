@@ -1,8 +1,8 @@
-import { DataTypes, sequelize } from "../lib/index";
-import { Supplier } from "./Supplier.model.js";
-import { Category } from "./category.model.js";
+import { DataTypes, sequelize } from "../lib/index.js";
+import { supplier } from "./supplier.model.js";
+import { category } from "./category.model.js";
 
-export const Product = sequelize.define("product", {
+export const product = sequelize.define("product", {
   name: DataTypes.STRING,
   description: DataTypes.STRING,
   quantityInStock: DataTypes.INTEGER,
@@ -10,15 +10,14 @@ export const Product = sequelize.define("product", {
 });
 
 // Define associations
-Product.belongsTo(Supplier, {
+product.belongsTo(supplier, {
   foreignKey: {
     name: "supplierId",
     allowNull: false,
   },
 });
 
-Supplier.hasMany(Product, { foreignKey: "supplierId" });
+supplier.hasMany(product, { foreignKey: "supplierId" });
 
-Product.belongsToMany(Category, { through: "ProductCategory" });
-Category.belongsToMany(Product, { through: "ProductCategory" });
-
+product.belongsToMany(category, { through: "productCategory" });
+category.belongsToMany(product, { through: "productCategory" });

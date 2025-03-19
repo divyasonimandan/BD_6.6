@@ -56,8 +56,113 @@ app.get("/seed_db", async (req, res) => {
     await supplier.bulkCreate(suppliersData);
     await category.bulkCreate(categoriesData);
     await product.bulkCreate(productsData);
+    await productCategory.bulkCreate({});
     res.status(200).json("data seeded successfully..!");
   } catch (error) {
     res.status(500).json({ error: "Internal Server Error" });
   }
+});
+
+// Exercise 1: Create a New Supplier (POST ).
+
+async function addNewSupplier(suppliersData) {
+  let newSupplier = await supplier.create(suppliersData);
+  return { newSupplier };
+}
+
+app.post("/suppliers/new", async (req, res) => {
+  try {
+    let newSupplier = req.body.newSupplier;
+    let response = await addNewSupplier(newSupplier);
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Exercise 2: Create a New Product (POST )
+
+async function addNewProduct(productsData) {
+  let newProduct = await product.create(productsData);
+  return { newProduct };
+}
+
+app.post("/products/new", async (req, res) => {
+  try {
+    let newProduct = req.body.newProduct;
+    let response = await addNewProduct(newProduct);
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Exercise 3: Create a New Category(POST).
+
+async function addNewCategory(categoriesData) {
+  let newCategory = await category.create(categoriesData);
+  return { newCategory };
+}
+
+app.post("/categories/new", async (req, res) => {
+  try {
+    let newCategory = req.body.newCategory;
+    let response = await addNewCategory(newCategory);
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+
+
+// Exercise 6: Update a Supplier (POST)
+
+async function updatedSupplierById(updatedSupplier, id) {
+  let supplierDetails = await supplier.findOne({ where: { id } });
+  if (!supplierDetails) {
+    return {};
+  }
+  supplierDetails.set(updatedSupplier);
+  let updatedSupplierDetails = await supplierDetails.save();
+
+  return { message: "Supplier updated successfully", updatedSupplierDetails };
+}
+
+app.post("/suppliers/:id/update", async (req, res) => {
+  try {
+    let id = parseInt(req.params.id);
+    let newSupplier = req.body;
+    let response = await updatedSupplierById(newSupplier, id);
+    if (!response.message) {
+      return res.status(404).json({ message: "Supplier not found" });
+    }
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Exercise 7: Delete a Supplier (POST)
+
+async function deleteSuppliersById(id) {
+  let destroyedSupplier = await supplier.destroy({ where: { id } });
+  if (destroyedSupplier === 0) return {};
+  return { message: "Supplier deleted successfully" };
+}
+
+app.post("/suppliers/delete", async (req, res) => {
+  try {
+    let id = parseInt(req.body.id);
+    let response = await deleteSuppliersById(id);
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+//
+
+app.listen(3000, () => {
+  console.log("server is running on port 3000");
 });
